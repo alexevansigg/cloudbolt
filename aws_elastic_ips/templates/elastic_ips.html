@@ -5,7 +5,7 @@
 </div>
 <div class="panel panel-default">
 
-        <table width="100%" class="table table-striped dataTable table-condensed table-hover">
+        <table width="100%" class="table table-striped dataTable table-condensed table-hover elastic_ip_table">
             <thead>
             <th>Allocation ID</th>
             <th>Elastic IP</th>
@@ -35,6 +35,6 @@
 </div>
 
 <script>
-$('.dataTable').dataTable();
-$('.cust-toolbar').appendTo('.dataTables_toolbar');
+$('.elastic_ip_table').dataTable();
+$('.cust-toolbar').appendTo('#tab-elastic-ips .dataTables_toolbar');
 </script>
