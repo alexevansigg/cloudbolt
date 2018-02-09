@@ -4,3 +4,5 @@ This UI extension adds a new tab onto AWS providers and allows the following fun
 * Create new *unassigned* Elastic IP address
 * Remove individual Unassigned Elastic IP Addresses
 * Remove all Unassigned Elastic IP Addresses
+
+![UI Extension](screenshots/screen1.png "Example UI Extension")
