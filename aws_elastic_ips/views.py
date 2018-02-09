@@ -39,7 +39,6 @@ def aws_elastic_ips(request, obj_id):
     addresses = ec2.get_all_addresses()
     for ad in addresses:
         ad.instance_name  = "Available" if ad.instance_id is None else ec2.get_all_instances(ad.instance_id)[0].instances[0].tags['Name']
-
     return render(request, 'aws_elastic_ips/templates/elastic_ips.html', dict(
         addresses=addresses, env_id=obj_id,
     ))

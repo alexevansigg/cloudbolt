@@ -1,11 +1,10 @@
 {% load i18n %}
-<div class="btn-toolbar">
-    <a href="/aws_add_elastic_ip/{{ env_id }}" class="btn btn-default">{% trans 'Add Elastic IP' %}</a>
-    <a href="/aws_release_all_elastic_ip/{{ env_id }}" class="btn btn-default">{% trans 'Release Unused Elastic IPs' %}</a>
+<div class="cust-toolbar">
+    <a href="/aws_add_elastic_ip/{{ env_id }}" class="btn btn-success btn-sm"><span class="fa fa-plus-circle"></span> {% trans 'Add Elastic IP' %}</a>
+    <a href="/aws_release_all_elastic_ip/{{ env_id }}" class="btn btn-danger btn-sm"><span class="fa fa-times-circle-o"></span> {% trans 'Release Unused Elastic IPs' %}</a>
 </div>
 <div class="panel panel-default">
-    <div class="panel-heading">Existing Elastic IP Objects</div>
-    <div class="panel-body">
+
         <table width="100%" class="table table-striped dataTable table-condensed table-hover">
             <thead>
             <th>Allocation ID</th>
@@ -19,15 +18,23 @@
             <tr>
                 <td>{{ ad.allocation_id }}</td>
                 <td>{{ ad.public_ip }}</td>
+                {% if ad.instance_name == 'Available' %}
+                <td><span class='label label-success'>{{ad.instance_name}}</span></td>
+                {% else %}
                 <td>{{ ad.instance_name }}</td>
+                {% endif %}
                 <td>{{ ad.private_ip_address }}</td>
                 <td>
                   {% if ad.instance_name == 'Available' %}
-                    <a title="{% trans 'Delete this Elastic IP' %}" href="/aws_release_elastic_ip/{{env_id}}/{{ad.allocation_id}}" class="icon-delete"></a>
+                    <a title="{% trans 'Delete this Elastic IP' %}" href="/aws_release_elastic_ip/{{env_id}}/{{ad.allocation_id}}" class="btn btn-danger btn-xs icon-delete"></a>
                        {% endif %}
                 </td>
             </tr>
               {% endfor %}
         </table>
-    </div>
 </div>
+
+<script>
+$('.dataTable').dataTable();
+$('.cust-toolbar').appendTo('.dataTables_toolbar');
+</script>
